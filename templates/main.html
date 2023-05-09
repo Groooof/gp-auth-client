@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Главная страница{% endblock %}
+{% block body %}
+<div class="container h-100 d-flex flex-column justify-content-center">
+    <div class="row">
+        <div class="col-4 p-0"></div>
+        <div class="col-4 p-0">
+
+
+
+                <div class="mb-2 w-75 mx-auto">
+                    <button type="submit" class="btn my-btn-1 w-100" id="login-btn">Войти</button>
+                </div>
+
+    </div>
+</div>
+
+
+<script>
+
+const loginBtn = document.querySelector('#login-btn');
+loginBtn.addEventListener('click', async () => {
+
+        const response = await fetch('/api/v1/login');
+        const response_data = await response.json()
+        window.location.href = response_data['redirect_to'];
+});
+
+    
+</script>
+{% endblock %}
