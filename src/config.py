@@ -4,7 +4,7 @@ import datetime as dt
 from pydantic import BaseSettings
 
 
-GPAUTH_SERVICE_BASE_URL = 'https://gp-auth'
+GPAUTH_SERVICE_BASE_URL = 'https://gp-auth.ru'
 GPAUTH_SERVICE_AUTHORIZE_PATH = '/authorize'
 GPAUTH_SERVICE_TOKEN_PATH = '/api/v1/token'
 GPAUTH_REDIRECT_URI = '/callback'
