@@ -20,7 +20,7 @@ def get_app() -> FastAPI:
     app.include_router(router=auth_router, prefix='/api/v1')
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=['https://gp-auth-ru'],
+        allow_origins=['https://gp-auth.ru'],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"]
