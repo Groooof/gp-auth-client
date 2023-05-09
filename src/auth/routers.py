@@ -14,7 +14,7 @@ router = APIRouter()
 
 
 @router.get('/login')
-def login(response: Response):
+def login():
     
     response_type = 'code'
     client_id = config.CLIENT_ID

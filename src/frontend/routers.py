@@ -26,8 +26,6 @@ templates = Jinja2Templates(directory="templates")
 async def get_main_page(request: Request,
                         session_data: str = Depends(SessionCookie(raise_exc=False))):
     
-    print(request.url_for('callback'))
-    
     session, user_id = session_data
     if session is not None:
         return RedirectResponse('/protected', status_code=302)
@@ -40,7 +38,6 @@ async def get_protected_page(request: Request,
                              session_data: str = Depends(SessionCookie(raise_exc=False))):
     
     session, user_id = session_data
-    print(10*'*', session_data)
     if session is None:
         return RedirectResponse('/', status_code=302)
     
@@ -86,10 +83,12 @@ async def callback(response: Response,
 
     session = generate_random_string(config.USER_SESSION_LEN)
     await redis.set(session, str(user_id), ex=int(config.USER_SESSION_LIFETIME.total_seconds()))
+    
+    response = RedirectResponse(url=config.BASE_URL + config.PROTECTED_ROUTE, status_code=302)
     response.set_cookie(config.USER_SESSION_COOKIE_NAME, 
                         session,
                         max_age=int(config.USER_SESSION_LIFETIME.total_seconds()),
                         secure=True,
                         httponly=True)
 
-    return {'redirect_to': config.BASE_URL + config.PROTECTED_ROUTE}
+    return response
