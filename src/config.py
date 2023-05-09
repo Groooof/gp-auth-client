@@ -3,14 +3,15 @@ import datetime as dt
 
 from pydantic import BaseSettings
 
+BASE_URL = 'https://almax-dev.online'
+CALLBACK_ROUTE = '/callback'
 
 GPAUTH_SERVICE_BASE_URL = 'https://gp-auth.ru'
-GPAUTH_SERVICE_AUTHORIZE_PATH = '/authorize'
-GPAUTH_SERVICE_TOKEN_PATH = '/api/v1/token'
-GPAUTH_REDIRECT_URI = '/callback'
+GPAUTH_SERVICE_AUTHORIZE_ROUTE = '/authorize'
+GPAUTH_SERVICE_TOKEN_ROUTE = '/api/v1/token'
 
-CLIENT_ID = 'cd5c9ac6-5be9-4926-8ed6-55ea37eb5c37'
-CLIENT_SECRET = 'cWAL8LxYLRl9JlFiCNr9qUbGg2xVMX0nhisOTmTJUv5RpzCTvNvFP8ILmUnPV4Z5'
+CLIENT_ID = 'e88d30cd-31b0-4b58-b157-6fa6be2f8058'
+CLIENT_SECRET = 'OKpIKtRbDE65JhCrZKcJR3nAnuiGZG7uoaDQe4BpknOneTmUHWxgwV6eVWOm2lOR'
 
 REDIS_DSN = os.environ.get('REDIS_URL')
 USER_SESSION_LEN = 64

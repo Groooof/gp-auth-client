@@ -20,10 +20,10 @@ def login(response: Response):
     client_id = config.CLIENT_ID
     state = crypto.generate_random_string(config.STATE_LEN)
     nonce = crypto.generate_random_string(config.NONCE_LEN)
-    redirect_uri = 'http://localhost:8001/callback'
+    redirect_uri = config.BASE_URL + config.CALLBACK_ROUTE
     
     url_query_params = f'?response_type={response_type}&client_id={client_id}&state={state}&nonce={nonce}&redirect_uri={redirect_uri}'
-    url = config.GPAUTH_SERVICE_BASE_URL + config.GPAUTH_SERVICE_AUTHORIZE_PATH + url_query_params
+    url = config.GPAUTH_SERVICE_BASE_URL + config.GPAUTH_SERVICE_AUTHORIZE_ROUTE + url_query_params
     
     response.set_cookie('state', 
                         state,

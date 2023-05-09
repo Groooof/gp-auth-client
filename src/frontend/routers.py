@@ -26,6 +26,8 @@ templates = Jinja2Templates(directory="templates")
 async def get_main_page(request: Request,
                         session_data: str = Depends(SessionCookie(raise_exc=False))):
     
+    print(request.url_for('callback'))
+    
     session, user_id = session_data
     if session is not None:
         return RedirectResponse('/protected', status_code=302)
@@ -62,12 +64,12 @@ async def callback(response: Response,
     data = {
         "client_secret": config.CLIENT_SECRET,
         "client_id": config.CLIENT_ID,
-        "redirect_uri": 'http://localhost:8001/callback',
+        "redirect_uri": config.BASE_URL + config.CALLBACK_ROUTE,
         "grant_type": "authorization_code",
         "code": code
     }
-    url = config.GPAUTH_SERVICE_BASE_URL + config.GPAUTH_SERVICE_TOKEN_PATH
-    resp = requests.post('http://host.docker.internal:8000/api/v1/token', data=json.dumps(data))
+    token_url = config.GPAUTH_SERVICE_BASE_URL + config.GPAUTH_SERVICE_TOKEN_ROUTE
+    resp = requests.post(token_url, data=json.dumps(data))
     if resp.status_code != 200:
         return RedirectResponse(url='/', status_code=302)
         # raise HTTPException(status_code=400, detail='invalid_request')
