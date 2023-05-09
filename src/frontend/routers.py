@@ -92,4 +92,4 @@ async def callback(response: Response,
                         secure=True,
                         httponly=True)
 
-    return {'redirect_to': 'http://localhost:8001/protected'}
+    return {'redirect_to': config.BASE_URL + config.PROTECTED_ROUTE}

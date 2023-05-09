@@ -5,6 +5,7 @@ from pydantic import BaseSettings
 
 BASE_URL = 'https://almax-dev.online'
 CALLBACK_ROUTE = '/callback'
+PROTECTED_ROUTE = '/protected'
 
 GPAUTH_SERVICE_BASE_URL = 'https://gp-auth.ru'
 GPAUTH_SERVICE_AUTHORIZE_ROUTE = '/authorize'
