@@ -21,9 +21,9 @@
 const loginBtn = document.querySelector('#login-btn');
 loginBtn.addEventListener('click', async () => {
 
-        const response = await fetch('/api/v1/login');
-        const response_data = await response.json()
-        window.location.href = response_data['redirect_to'];
+        const response = await fetch('/api/v1/login', {redirect: 'follow'});
+        // const response_data = await response.json()
+        // window.location.href = response_data['redirect_to'];
 });
 
     

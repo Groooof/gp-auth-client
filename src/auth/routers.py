@@ -25,6 +25,7 @@ def login(response: Response):
     url_query_params = f'?response_type={response_type}&client_id={client_id}&state={state}&nonce={nonce}&redirect_uri={redirect_uri}'
     url = config.GPAUTH_SERVICE_BASE_URL + config.GPAUTH_SERVICE_AUTHORIZE_ROUTE + url_query_params
     
+    response = RedirectResponse(url=url, status_code=302)
     response.set_cookie('state', 
                         state,
                         max_age=5*60,
@@ -37,7 +38,7 @@ def login(response: Response):
                         secure=True,
                         httponly=True,
                         samesite='none')
-    return {'redirect_to': url}
+    return response
 
 
 @router.post('/logout')
