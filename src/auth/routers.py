@@ -29,12 +29,14 @@ def login(response: Response):
                         state,
                         max_age=5*60,
                         secure=True,
-                        httponly=True)
+                        httponly=True,
+                        samesite='none')
     response.set_cookie('nonce', 
                         nonce,
                         max_age=5*60,
                         secure=True,
-                        httponly=True)
+                        httponly=True,
+                        samesite='none')
     return {'redirect_to': url}
 
 
