@@ -89,6 +89,7 @@ async def callback(response: Response,
                         session,
                         max_age=int(config.USER_SESSION_LIFETIME.total_seconds()),
                         secure=True,
-                        httponly=True)
+                        httponly=True,
+                        samesite='none')
 
     return response
